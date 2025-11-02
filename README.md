@@ -1,16 +1,5 @@
 A Java Battleship game with **dual UI implementations** (Console + Swing GUI) demonstrating **MVC architecture**, **interface-based design**,  and **testing practices**.
 
-Architecture & Design:
-- **MVC pattern**
-- **Multiple UI implementations**
-- **Interface-based design** for swappable components
-- **Dependency Injection** and loose coupling
-- **SOLID principles**
-
-Test Coverage:
-- **Model tests** - ship placement, hit detection, game state, win/loss conditions
-- **Controller tests** - manual mocks + Mockito framework (practiced both approaches)
-
 <div align="center">
   <table>
     <tr>
@@ -45,6 +34,17 @@ Test Coverage:
     </tr>
   </table>
 </div>
+
+Architecture & Design:
+- **MVC pattern**
+- **Multiple UI implementations**
+- **Interface-based design** for swappable components
+- **Dependency Injection** and loose coupling
+- **SOLID principles**
+
+Test Coverage:
+- **Model tests** - ship placement, hit detection, game state, win/loss conditions
+- **Controller tests** - manual mocks + Mockito framework (practiced both approaches)
 
 ## Setup
 

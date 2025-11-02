@@ -1,17 +1,15 @@
-# Battleship Game - MVC Multi-UI
+A Java Battleship game with **dual UI implementations** (Console + Swing GUI) demonstrating **MVC architecture**, **interface-based design**,  and **testing practices**.
 
-A Java Battleship game demonstrating clean **MVC architecture** with **multiple UI implementations** and comprehensive testing
+Architecture & Design:
+- **MVC pattern**
+- **Multiple UI implementations**
+- **Interface-based design** for swappable components
+- **Dependency Injection** and loose coupling
+- **SOLID principles**
 
-**Architecture & Design**
-- Clean **MVC pattern** with proper separation of concerns
-- **Multiple UI implementations** (Console + Swing GUI)
-- **Interface-based design** for flexibility and testability
-- **Dependency Injection Pattern** and **loose coupling**
-- **SOLID principles** and clean code practices
-
-**Testing Strategy**
-- Comprehensive **unit testing** (model)
-- Both manual and Mockito **mock testing** (controller) to practice different mocking approaches
+Test Coverage:
+- **Model tests** - ship placement, hit detection, game state, win/loss conditions
+- **Controller tests** - manual mocks + Mockito framework (practiced both approaches)
 
 <div align="center">
   <table>
@@ -48,82 +46,83 @@ A Java Battleship game demonstrating clean **MVC architecture** with **multiple 
   </table>
 </div>
 
-## 🎮 How to Play
+## Setup
 
-**Console Version**
+**Requirements:** Java 17+
+**Required test libraries:** JUnit 5, Mockito 5.9.0, [byte-buddy](https://repo1.maven.org/maven2/net/bytebuddy/byte-buddy/), [byte-buddy-agent](https://repo1.maven.org/maven2/net/bytebuddy/byte-buddy-agent/), [mockito-core](https://repo1.maven.org/maven2/org/mockito/mockito-core/), [mockito-junit-jupiter](https://repo1.maven.org/maven2/org/mockito/mockito-junit-jupiter/), [objenesis](https://repo1.maven.org/maven2/org/objenesis/objenesis/)  
 
-- Start the game: Run ConsoleApp.java
-- Enter coordinates: Type row letter (A-J) + column number (0-9), e.g., "A5"
-- View results: See HIT or MISS feedback and updated grid
-- Continue guessing: Find all ships before running out of 50 guesses
-- Game ends: Win by sinking all ships or lose after 50 guesses
-
-**Swing GUI Version**
-
-- Start the game: Run SwingApp.java
-- Click coordinates: Click on grid cells to make guesses
-- Visual feedback: See immediate color-coded HIT/MISS results
-
-## 🚀 Features
-
-- Ship Placement: Random placement of 5 ships (Aircraft Carrier, Battleship, Submarine, Destroyer, Patrol Boat)
-- Multiple Interfaces:
-  - Console-based interface with text input
-  - Swing GUI with clickable grid interface
-- Input Validation:
-  - Coordinate format checking (letter + number)
-  - Range validation (A-J for rows, 0-9 for columns)
-  - Duplicate guess prevention
-  - Case-insensitive input (accepts a5, A5)
-- Game State Management:
-  - Win condition: Sink all ships
-  - Loss condition: Use all 50 guesses
-  - Real-time guess tracking and grid display
-- User Experience: Clear hit/miss feedback, error messages, and final ship revelation
-
-## 🏗️ Architecture
-The application follows the MVC pattern with clear separation of concerns:
-
+1. clone and navigate
 ```bash
+git clone 
+cd battleship-game
+```
+
+2. compile
+```bash
+javac -d bin src/main/java/battleship/**/*.java
+```
+
+3. run Console version
+```bash
+java -cp bin battleship.ConsoleApp
+```
+
+**OR** run Swing GUI version
+```bash
+java -cp bin battleship.SwingApp
+```
+
+## Usage
+
+**Console Version:**
+1. Launch → grid displays with hidden ships
+2. Enter coordinates: `A5` (row A-J, column 0-9)
+3. Get feedback: HIT/MISS, updated grid
+4. Win: Sink all 5 ships | Lose: Use all 50 guesses
+
+**Swing GUI Version:**
+1. Launch → clickable grid interface
+2. Click cells to guess
+3. Visual feedback: color-coded hits/misses
+4. Same win/loss conditions
+
+**Valid Inputs:** `A5`, `a5`, `J9` (case-insensitive)  
+**Invalid:** `K5` (out of bounds), `A10` (invalid column), duplicate guesses
+
+**Ships:**
+- Aircraft Carrier (5 cells)
+- Battleship (4 cells)
+- Submarine (3 cells)
+- Destroyer (3 cells)
+- Patrol Boat (2 cells)
+
+## Architecture
+```
 src/main/java/battleship/
 ├── model/
-│   ├── IBattleshipModel.java                          # Model interface
-│   ├── BattleshipModel.java                           # Game logic implementation
-│   ├── ShipType.java                                  # Ship type enumeration
-│   └── CellState.java                                 # Cell state enumeration
+│   ├── IBattleshipModel.java              # model contract
+│   ├── BattleshipModel.java               # game logic
+│   ├── ShipType.java                      # ship definitions
+│   └── CellState.java                     # cell states (empty/hit/miss)
 ├── view/
-│   ├── IBattleshipView.java                           # View interface
-│   ├── BattleshipConsoleView.java                     # Console UI implementation
-│   └── SwingBattleshipView.java                       # Swing GUI implementation
+│   ├── IBattleshipView.java               # view contract
+│   ├── BattleshipConsoleView.java         # console UI
+│   └── SwingBattleshipView.java           # GUI implementation
 ├── controller/
-│   ├── IBattleshipController.java                     # Controller interface
-│   ├── BattleshipConsoleController.java               # Console controller implementation
-│   └── SwingBattleshipController.java                 # Swing controller implementation
-├── ConsoleApp.java                                    # Console application entry point
-└── SwingApp.java                                      # Swing application entry point
+│   ├── IBattleshipController.java         # controller contract
+│   ├── BattleshipConsoleController.java   # console controller
+│   └── SwingBattleshipController.java     # GUI controller
+├── ConsoleApp.java                        # console entry point
+└── SwingApp.java                          # GUI entry point
 
 src/test/java/battleship/
 ├── model/
-│   ├── BattleshipModelPlacementTest.java              # Ship placement tests
-│   ├── BattleshipModelPlayerInteractionTest.java      # Player interaction tests
-│   ├── BattleshipModelGameStateTest.java              # Game state tests
-│   └── BattleshipModelIntegrationTest.java            # Integration tests
+│   ├── BattleshipModelPlacementTest.java          # ship placement logic
+│   ├── BattleshipModelPlayerInteractionTest.java  # hit/miss mechanics
+│   ├── BattleshipModelGameStateTest.java          # win/loss conditions
+│   └── BattleshipModelIntegrationTest.java        # full game scenarios
 └── controller/
-    ├── BattleshipConsoleControllerTest.java           # Manual mock tests
-    ├── BattleshipConsoleControllerMockitoTest.java    # Mockito framework tests
-    └── BattleshipConsoleControllerparseGuessTest.java # Input parsing tests
+    ├── BattleshipConsoleControllerTest.java           # manual mocks
+    ├── BattleshipConsoleControllerMockitoTest.java    # Mockito mocks
+    └── BattleshipConsoleControllerparseGuessTest.java # input parsing
 ```
-
-## 🛠️ Technologies
-
-Java 17+ - Core language  
-Swing - GUI framework
-JUnit 5 - Testing framework  
-Mockito 5.9.0 - Mocking framework for controller tests  
-  
-Libraries required for mock testing:  
-[byte-buddy](https://repo1.maven.org/maven2/net/bytebuddy/byte-buddy/)  
-[byte-buddy-agent](https://repo1.maven.org/maven2/net/bytebuddy/byte-buddy-agent/)  
-[mockito-core](https://repo1.maven.org/maven2/org/mockito/mockito-core/)  
-[mockito-junit-jupiter](https://repo1.maven.org/maven2/org/mockito/mockito-junit-jupiter/)  
-[objenesis](https://repo1.maven.org/maven2/org/objenesis/objenesis/)  

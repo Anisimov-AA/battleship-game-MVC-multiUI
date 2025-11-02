@@ -51,18 +51,12 @@ Test Coverage:
 **Requirements:** Java 17+   
 **Required test libraries:** JUnit 5, Mockito 5.9.0, [byte-buddy](https://repo1.maven.org/maven2/net/bytebuddy/byte-buddy/), [byte-buddy-agent](https://repo1.maven.org/maven2/net/bytebuddy/byte-buddy-agent/), [mockito-core](https://repo1.maven.org/maven2/org/mockito/mockito-core/), [mockito-junit-jupiter](https://repo1.maven.org/maven2/org/mockito/mockito-junit-jupiter/), [objenesis](https://repo1.maven.org/maven2/org/objenesis/objenesis/)  
 
-1. clone and navigate
-```bash
-git clone 
-cd battleship-game
-```
-
-2. compile
+1. compile
 ```bash
 javac -d bin src/main/java/battleship/**/*.java
 ```
 
-3. run Console version
+2. run Console version
 ```bash
 java -cp bin battleship.ConsoleApp
 ```

@@ -16,11 +16,11 @@ Test Coverage:
     <tr>
       <td style="text-align: center; padding: 10px;">
         <img src="imgs/bg2.jpg" alt="Console Interface" height="400"/>
-        <br><b>Game Start</b>
+        <br><b>Console Interface</b>
       </td>
       <td style="text-align: center; padding: 10px;">
         <img src="imgs/bg4.png" alt="Swing GUI Interface" height="400"/>
-        <br><b>Gameplay</b>
+        <br><b>Swing GUI Interface</b>
       </td>
     </tr>
   </table>

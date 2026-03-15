@@ -15,7 +15,7 @@ Test Coverage:
   <table>
     <tr>
       <td style="text-align: center; padding: 10px;">
-        <img src="imgs/bg2.jpg" alt="Console Interface" height="300"/>
+        <img src="imgs/bg2.jpg" alt="Console Interface" height="400"/>
         <br><b>Game Start</b>
       </td>
       <td style="text-align: center; padding: 10px;">
